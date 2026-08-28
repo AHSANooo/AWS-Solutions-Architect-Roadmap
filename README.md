@@ -24,14 +24,14 @@ Zero-cost, 8-week terminal-first preparation roadmap tracking hands-on architect
 
 | Week | Core Focus | Hands-on Deliverable | Blog / LinkedIn Link | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **W1** | IAM, EC2, EBS, EFS | Multi-AZ Web Tier + EFS Mount | [W1 Post](#) | 🔲 Pending |
-| **W2** | S3 Lifecycle, ALB/NLB, ASG | Zero-Downtime Auto Scaling Cluster | [W2 Post](#) | 🔲 Pending |
-| **W3** | Custom VPC, Subnets, NAT, NACLs | Dual-AZ VPC with Public/Private Subnets | [W3 Post](#) | 🔲 Pending |
-| **W4** | VPC Endpoints, RDS Multi-AZ, DynamoDB | Private S3 Gateway + Isolated RDS Failover | [W4 Post](#) | 🔲 Pending |
-| **W5** | SQS, SNS, EventBridge, API Gateway | Decoupled Async Microservice Pipeline | [W5 Post](#) | 🔲 Pending |
-| **W6** | Route 53, Disaster Recovery (RPO/RTO) | Active-Passive Pilot Light Failover | [W6 Post](#) | 🔲 Pending |
-| **W7** | Well-Architected Framework & Whitepapers | Full-Domain Architecture Review | [W7 Post](#) | 🔲 Pending |
-| **W8** | Mock Simulations & Weak Spot Remediation | Benchmarking ≥ 80% First Attempt | [W8 Post](#) | 🔲 Pending |
+| **W1** | IAM, EC2, EBS, EFS | Multi-AZ Web Tier + EFS Mount | [Week 1 Notes](labs/week-01-iam-compute-storage/) | 🔲 Pending |
+| **W2** | S3 Lifecycle, ALB/NLB, ASG | Zero-Downtime Auto Scaling Cluster | [Week 2 Notes](labs/week-02-load-balancing-asg/) | 🔲 Pending |
+| **W3** | Custom VPC, Subnets, NAT, NACLs | Dual-AZ VPC with Public/Private Subnets | [Week 3 Notes](labs/week-03-custom-vpc-endpoints/) | 🔲 Pending |
+| **W4** | VPC Endpoints, RDS Multi-AZ, DynamoDB | Private S3 Gateway + Isolated RDS Failover | [Week 4 Notes](labs/week-04-databases-caching/) | 🔲 Pending |
+| **W5** | SQS, SNS, EventBridge, API Gateway | Decoupled Async Microservice Pipeline | [Week 5 Notes](labs/week-05-serverless-integration/) | 🔲 Pending |
+| **W6** | Route 53, Disaster Recovery (RPO/RTO) | Active-Passive Pilot Light Failover | [Week 6 Notes](labs/week-06-route53-dr-failover/) | 🔲 Pending |
+| **W7** | Well-Architected Framework & Whitepapers | Full-Domain Architecture Review | [Week 7 Notes](mock-exams/) | 🔲 Pending |
+| **W8** | Mock Simulations & Weak Spot Remediation | Benchmarking ≥ 80% First Attempt | [Week 8 Notes](mock-exams/) | 🔲 Pending |
 
 ---
 
@@ -52,13 +52,13 @@ Run local AWS services offline without account charges:
 cd localstack
 docker compose up -d
 awslocal s3 mb s3://test-bucket
-```
+```text
 
 ---
 
 ## 📁 Repository Structure
 
-```
+```text
 aws-solutions-architect-roadmap/
 ├── .github/
 │   └── workflows/
@@ -96,21 +96,23 @@ aws-solutions-architect-roadmap/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```
+```text
 
 ---
 
 ## 🚀 Getting Started
 
 1. Clone the repository and navigate to your workspace:
-   ```bash
-   cd aws-solutions-architect-roadmap
-   ```
+
+```bash
+cd aws-solutions-architect-roadmap
+```text
 
 2. Start LocalStack for offline testing:
-   ```bash
-   docker compose -f localstack/docker-compose.yml up -d
-   ```
+
+```bash
+docker compose -f localstack/docker-compose.yml up -d
+```text
 
 3. Review the week-specific lab guides in `/labs` to begin hands-on learning.
 
@@ -132,5 +134,5 @@ This roadmap is open-source and available under the MIT License.
 
 ---
 
-**Target Completion:** [Your Target Date]  
+**Target Completion:** [Your Target Date]
 **Last Updated:** 2026-08-28

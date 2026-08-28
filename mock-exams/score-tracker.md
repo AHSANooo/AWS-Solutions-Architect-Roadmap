@@ -4,11 +4,11 @@ Benchmark your progress across all four SAA-C03 domains and identify weak areas 
 
 ## Score Tracker Template
 
-```
+```text
 | Date | Exam Source | Total Score | Domain 1 (30%) | Domain 2 (26%) | Domain 3 (24%) | Domain 4 (20%) | Passing? | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | YYYY-MM-DD | Source | X% | Y% | Y% | Y% | Y% | Yes/No | Brief observations |
-```
+```text
 
 ---
 

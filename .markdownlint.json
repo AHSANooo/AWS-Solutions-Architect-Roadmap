@@ -1,0 +1,12 @@
+{
+  "default": true,
+  "line-length": false,
+  "no-hard-tabs": true,
+  "no-multiple-blanks": true,
+  "no-trailing-spaces": true,
+  "single-title": true,
+  "title-increment": true,
+  "ul-indent": {
+    "indent": 2
+  }
+}

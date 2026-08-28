@@ -4,7 +4,7 @@ Reusable Terraform modules for VPC, security groups, RDS, and Auto Scaling Group
 
 ## Module Structure
 
-```
+```text
 terraform/
 ├── main.tf
 ├── variables.tf
@@ -17,7 +17,7 @@ terraform/
 └── environments/
     ├── dev/
     └── prod/
-```
+```text
 
 ## Quick Start
 
@@ -25,6 +25,6 @@ terraform/
 terraform init
 terraform plan
 terraform apply
-```
+```text
 
 See individual module READMEs for configuration options.

@@ -5,10 +5,15 @@ Hands-on setup of a multi-AZ EC2 cluster with IAM roles, EBS volumes, and EFS fi
 ## Learning Objectives
 
 By the end of this lab, you will:
+
 1. ✅ Create and configure IAM roles for EC2 instances
+
 2. ✅ Launch EC2 instances across multiple AZs
+
 3. ✅ Attach and configure EBS volumes
+
 4. ✅ Set up an EFS file system for shared storage
+
 5. ✅ Verify multi-AZ resilience
 
 ---
@@ -16,8 +21,11 @@ By the end of this lab, you will:
 ## Prerequisites
 
 - AWS account with Free Tier access
+
 - AWS CLI configured (`aws configure`)
+
 - SSH key pair created
+
 - Basic Linux command-line knowledge
 
 ---
@@ -58,7 +66,7 @@ aws iam create-instance-profile --instance-profile-name SAALabProfile
 aws iam add-role-to-instance-profile \
   --instance-profile-name SAALabProfile \
   --role-name SAALabEC2Role
-```
+```text
 
 ### Step 2: Launch EC2 Instances (Multi-AZ)
 
@@ -80,7 +88,7 @@ aws ec2 run-instances \
   --iam-instance-profile Name=SAALabProfile \
   --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=LabInstance-AZ2}]' \
   --user-data file://userdata.sh
-```
+```text
 
 ### Step 3: Create and Attach EBS Volume
 
@@ -105,11 +113,12 @@ aws ec2 attach-volume \
   --volume-id $VOLUME_ID \
   --instance-id $INSTANCE_ID \
   --device /dev/sdf
-```
+```text
 
 ### Step 4: Mount EBS Volume on Instance
 
 SSH into instance and run:
+
 ```bash
 # Find the device
 lsblk
@@ -124,7 +133,7 @@ sudo chown ec2-user:ec2-user /data
 
 # Verify
 df -h
-```
+```text
 
 ### Step 5: Create and Mount EFS File System
 
@@ -150,17 +159,22 @@ sudo apt update
 sudo apt install nfs-common
 sudo mkdir /efs
 sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 $EFS_ID.efs.us-east-1.amazonaws.com:/ /efs
-```
+```text
 
 ---
 
 ## Verification Checklist
 
 - [ ] IAM role created and attached to EC2 instances
+
 - [ ] Both EC2 instances running in different AZs
+
 - [ ] EBS volume attached and mounted on instance
+
 - [ ] EFS file system created with mount targets
+
 - [ ] Can write to EBS volume and EFS from instances
+
 - [ ] Can access EFS mount from both instances (shared storage)
 
 ---
@@ -169,15 +183,18 @@ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,ret
 
 ```bash
 ./teardown.sh
-```
+```text
 
 ---
 
 ## Key Takeaways
 
 1. **IAM Roles:** Always use roles instead of hardcoding credentials
+
 2. **Multi-AZ:** Distribute resources for high availability
+
 3. **EBS vs. EFS:** EBS for single instance, EFS for shared access
+
 4. **Storage Optimization:** Right-size volumes; use gp3 for cost efficiency
 
 ---
@@ -185,6 +202,9 @@ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,ret
 ## References
 
 - [AWS IAM Roles Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+
 - [EC2 User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
+
 - [EBS Volume Types](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html)
+
 - [EFS Documentation](https://docs.aws.amazon.com/efs/latest/ug/)

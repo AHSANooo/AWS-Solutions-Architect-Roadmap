@@ -15,6 +15,6 @@ AWS native Infrastructure as Code templates for SAA lab environments.
 aws cloudformation create-stack \
   --stack-name saa-lab \
   --template-body file://vpc-template.yaml
-```
+```text
 
 See individual templates for parameters.

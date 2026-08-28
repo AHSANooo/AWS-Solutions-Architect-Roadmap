@@ -4,7 +4,7 @@ Select the right database for your workload: RDS, Aurora, DynamoDB, ElastiCache,
 
 ## Quick Selection Flowchart
 
-```
+```text
 START: What data type?
 
 ├─ Structured, relational (SQL)?
@@ -22,7 +22,7 @@ START: What data type?
 │
 └─ Analytics, data warehouse?
    └─ Petabyte-scale queries? → Redshift
-```
+```text
 
 ---
 
@@ -45,29 +45,33 @@ START: What data type?
 ## When to Choose Each
 
 ### RDS (MySQL/PostgreSQL/MariaDB)
-✅ Relational data, ACID compliance, moderate scale  
-❌ Not for petabyte analytics or microsecond latency  
-💰 Cost-effective for predictable workloads  
+✅ Relational data, ACID compliance, moderate scale
+❌ Not for petabyte analytics or microsecond latency
+💰 Cost-effective for predictable workloads
 
 ### Aurora
-✅ High availability, auto-scaling read replicas, MySQL/PostgreSQL compat  
-❌ Overkill for small databases  
+
+✅ High availability, auto-scaling read replicas, MySQL/PostgreSQL compat
+❌ Overkill for small databases
 💰 Pay per read/write unit (interesting for bursty traffic)
 
 ### DynamoDB
-✅ Massive scale, single-digit millisecond latency, serverless  
-❌ No complex joins, eventual consistency by default, limited queries  
-💰 On-demand pricing for unpredictable workloads  
+
+✅ Massive scale, single-digit millisecond latency, serverless
+❌ No complex joins, eventual consistency by default, limited queries
+💰 On-demand pricing for unpredictable workloads
 
 ### ElastiCache
-✅ Session management, real-time leaderboards, rate limiting  
-❌ Not a primary data store, in-memory (lose data on restart)  
-💰 Reduces database load dramatically  
+
+✅ Session management, real-time leaderboards, rate limiting
+❌ Not a primary data store, in-memory (lose data on restart)
+💰 Reduces database load dramatically
 
 ### Redshift
-✅ Petabyte-scale analytics, complex queries, BI tools  
-❌ Not for operational databases, slower for small datasets  
-💰 Expensive; consolidate all analytics here  
+
+✅ Petabyte-scale analytics, complex queries, BI tools
+❌ Not for operational databases, slower for small datasets
+💰 Expensive; consolidate all analytics here
 
 ---
 
@@ -92,6 +96,7 @@ START: What data type?
 **Winner:** Aurora (best performance + cost balance)
 
 ### Scenario: Caching layer for session storage
+
 - **ElastiCache (Redis, cache.t3.micro):** ~$15/month
 - **DynamoDB (On-demand):** ~$50+/month
 

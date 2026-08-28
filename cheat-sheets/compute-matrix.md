@@ -19,7 +19,7 @@ Quick reference for choosing between EC2, Lambda, ECS, and Fargate based on work
 
 ## Decision Tree
 
-```
+```text
 Start: What workload do I have?
 
 ├─ Long-running application (24/7)?
@@ -34,7 +34,7 @@ Start: What workload do I have?
 │  └─ YES (want to manage container host) → ECS (EC2)
 │  └─ YES (want serverless containers) → ECS (Fargate)
 │  └─ NO  → EC2
-```
+```text
 
 ---
 
@@ -48,6 +48,7 @@ Start: What workload do I have?
 **Winner:** Lambda if job <15 min
 
 ### Scenario 2: Always-On Web Server
+
 - **Lambda:** Not suitable (15-min timeout)
 - **ECS (Fargate):** $0.04731 (1 vCPU) × 730 hours = ~$34.55/month
 - **EC2 (t3.medium):** ~$0.0416 × 730 = ~$30.37/month

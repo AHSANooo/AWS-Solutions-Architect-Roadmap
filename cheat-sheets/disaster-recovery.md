@@ -16,7 +16,8 @@ RTO/RPO models, failover strategies, and Route 53 health check patterns.
 ## DR Strategy Spectrum
 
 ### 1. Backup & Restore (Cheapest, Slowest)
-```
+
+```text
 RTO: Hours to days
 RPO: Hours to days
 Cost: Lowest (~$50/month for S3 backups)
@@ -24,10 +25,10 @@ Effort: Manual restore required
 
 Architecture:
 Prod → Daily Snapshots → S3 → (Restore on failure)
-```
+```text
 
 ### 2. Pilot Light (Active standby, minimal cost)
-```
+```text
 RTO: Minutes to hours
 RPO: Minutes
 Cost: 50% of production (~$500/month for small instance)
@@ -35,10 +36,11 @@ Effort: Automated failover script
 
 Architecture:
 Prod → Continuous replication → Standby (t2.micro) → Scale up on failure
-```
+```text
 
 ### 3. Warm Standby (Scaled down secondary)
-```
+
+```text
 RTO: Minutes
 RPO: Real-time
 Cost: 50-75% of production (~$1,000/month for mid-sized)
@@ -48,10 +50,11 @@ Architecture:
 Prod (Primary) ←→ Standby (50% capacity) ← Always in sync
          ↓ Failover
     Route 53 updates DNS
-```
+```text
 
 ### 4. Hot Standby / Multi-Region Active-Active (Expensive, fastest)
-```
+
+```text
 RTO: Seconds
 RPO: Near zero
 Cost: 100% of production × 2 regions (~$5,000+/month)
@@ -62,7 +65,7 @@ Region 1 (Primary) ←→ Region 2 (Secondary)
           ↓           ↓
     Route 53 (health checks)
     Users routed to healthy region
-```
+```text
 
 ---
 
@@ -80,7 +83,8 @@ Region 1 (Primary) ←→ Region 2 (Secondary)
 ## Common Failover Patterns
 
 ### Pattern 1: Route 53 Health Check → Auto-failover
-```
+
+```text
 Route 53 Policy: Failover
 
 Primary endpoint → Health check (HTTP /health)
@@ -88,20 +92,22 @@ Primary endpoint → Health check (HTTP /health)
    └─ Unhealthy? → Route to secondary
 
 Automatic, no manual intervention needed
-```
+```text
 
 ### Pattern 2: Weighted Routing (Gradual migration)
-```
+
+```text
 Route 53 Policy: Weighted
 
 Primary endpoint: 70%
 Secondary endpoint: 30%
 
 Use case: Gradually shift traffic before permanent failover
-```
+```text
 
 ### Pattern 3: Latency-based Routing (Multi-region)
-```
+
+```text
 Route 53 Policy: Latency
 
 Users in us-east-1 → Route to us-east-1 endpoint
@@ -109,25 +115,28 @@ Users in eu-west-1 → Route to eu-west-1 endpoint
 Users in ap-south-1 → Route to ap-south-1 endpoint
 
 Lowest latency for all users
-```
+```text
 
 ---
 
 ## Database Failover Strategies
 
 ### RDS Multi-AZ
+
 - **RTO:** ~2 minutes (automatic failover)
 - **RPO:** ~1 second (synchronous replication)
 - **Cost:** 2x the single-AZ cost
 - **Maintenance:** No downtime for patching
 
 ### Aurora Multi-Region (Global Database)
+
 - **RTO:** <1 minute (managed failover)
 - **RPO:** <1 second (asynchronous)
 - **Cost:** Secondary region reads are cheaper
 - **Best for:** Disaster recovery + read scaling
 
 ### DynamoDB Global Tables
+
 - **RTO:** Immediate (already replicated)
 - **RPO:** <1 second (stream-based replication)
 - **Cost:** 1.25x base cost (per replica)

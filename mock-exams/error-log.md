@@ -4,11 +4,11 @@ Track missed questions, analyze wrong choices, and document root causes for cont
 
 ## Log Entry Template
 
-```
+```text
 | Date | Exam Source | Question # | Topic | Wrong Choice | Correct Answer | Root Cause | Remediation |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | YYYY-MM-DD | Source Name | Q# | Domain | Your answer | Correct answer | Why you chose wrong | How to avoid next time |
-```
+```text
 
 ---
 

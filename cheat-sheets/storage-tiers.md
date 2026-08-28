@@ -15,21 +15,26 @@ S3 storage classes, EBS volume types, and EFS vs. FSx decision tree.
 | **S3 Glacier Deep Archive** | 99.999999999% | 99.99% | Hours-days | 180 days | Compliance archive | $0.00099/GB |
 
 ### Key Rules
+
 - **Minimum storage duration:** Charged even if deleted earlier
+
 - **Retrieval costs:** Vary by tier (Glacier Instant free, Deep Archive $50+ per TB)
+
 - **Intelligent-Tiering:** Auto moves objects; no retrieval cost
 
 ---
 
 ## S3 Lifecycle Policy Example
 
-```
+```text
 Standard → (30 days) → Standard-IA → (90 days) → Glacier Flexible → (365 days) → Deep Archive
   (Hot)              (Warm)           (Cold)                    (Frozen)
-```
+```text
 
 **Annual cost for 1 TB of data:**
+
 - Standard all year: $276
+
 - With lifecycle: $80 (70% savings!)
 
 ---
@@ -45,7 +50,9 @@ Standard → (30 days) → Standard-IA → (90 days) → Glacier Flexible → (3
 | **sc1** (Cold) | Infrequent access | 250 | 250 MB/s | $0.015/GB | 99.9% |
 
 ### Decision: gp3 vs. io1
+
 - **gp3:** Use for 95% of workloads (cost-effective, independent IOPS/throughput)
+
 - **io1:** Only if you need >16,000 IOPS (databases, data warehouses)
 
 ---
@@ -62,9 +69,13 @@ Standard → (30 days) → Standard-IA → (90 days) → Glacier Flexible → (3
 | **Replication** | Built-in (AZ-resilient) | Multi-AZ option | Single AZ |
 
 ### Quick Decision
+
 - **Need shared Linux storage?** → EFS
+
 - **Need Windows file shares?** → FSx (Windows)
+
 - **Need extreme performance (HPC)?** → FSx (Lustre)
+
 - **Need local cache + cloud?** → FSx (with hybrid option)
 
 ---
@@ -72,36 +83,41 @@ Standard → (30 days) → Standard-IA → (90 days) → Glacier Flexible → (3
 ## Cost Optimization Strategies
 
 ### Strategy 1: S3 Lifecycle Policies
+
 ```bash
 Move to Standard-IA after 30 days
 Move to Glacier after 90 days
 Delete after 2 years
-```
+```text
+
 **Savings:** 70-90% for archival data
 
 ### Strategy 2: EBS Right-Sizing
-```
+
+```text
 Current: 1 TB gp2 volume @ 10% utilization
 Optimized: 100 GB gp3 volume
 Savings: $108/year
-```
+```text
 
 ### Strategy 3: S3 Intelligent-Tiering
-```
+
+```text
 Enable auto-tiering on production buckets
 AWS moves data automatically based on access patterns
 No retrieval costs
 Result: 40-50% savings without manual intervention
-```
+```text
 
 ### Strategy 4: Consolidate to S3 One Zone-IA
-```
+
+```text
 For non-critical backups:
 Standard: $23/TB
 One Zone-IA: $10/TB
 Savings: 57%
 (Trade-off: Single AZ, 30-day minimum)
-```
+```text
 
 ---
 
