@@ -1,0 +1,39 @@
+name: Lint & Validate
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Lint Markdown
+        uses: nosqlite/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          config_file: .markdownlint.json
+
+  validate-iac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate Terraform
+        working-directory: ./iac/terraform
+        run: |
+          terraform init -backend=false
+          terraform validate
+
+      - name: Validate CloudFormation
+        working-directory: ./iac/cloudformation
+        run: |
+          for file in *.json *.yaml *.yml; do
+            if [[ -f "$file" ]]; then
+              aws cloudformation validate-template --template-body file://"$file" || true
+            fi
+          done
