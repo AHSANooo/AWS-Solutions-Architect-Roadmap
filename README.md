@@ -52,7 +52,7 @@ Run local AWS services offline without account charges:
 cd localstack
 docker compose up -d
 awslocal s3 mb s3://test-bucket
-```text
+```
 
 ---
 
@@ -96,7 +96,7 @@ aws-solutions-architect-roadmap/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```text
+```
 
 ---
 
@@ -106,13 +106,14 @@ aws-solutions-architect-roadmap/
 
 ```bash
 cd aws-solutions-architect-roadmap
-```text
+```
 
 2. Start LocalStack for offline testing:
 
 ```bash
 docker compose -f localstack/docker-compose.yml up -d
-```text
+```
+It would be selfish of me to ask you to wait 1–2 years for me to graduate and get settled, especially with your family's situation, when I cannot guarantee the outcome with my own family.
 
 3. Review the week-specific lab guides in `/labs` to begin hands-on learning.
 
@@ -134,5 +135,5 @@ This roadmap is open-source and available under the MIT License.
 
 ---
 
-**Target Completion:** [Your Target Date]
-**Last Updated:** 2026-08-28
+**Target Completion:** [2026-10-30]
+**Last Updated:** 2026-08-30
