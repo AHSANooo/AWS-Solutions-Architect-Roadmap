@@ -135,5 +135,5 @@ This roadmap is open-source and available under the MIT License.
 
 ---
 
-**Target Completion:** [2026-10-30]
-**Last Updated:** 2026-08-30
+**Target Completion:** [2026-11-30]
+**Last Updated:** 2026-09-09
